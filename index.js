@@ -38,9 +38,7 @@ mongoose.connect(process.env.mongo_uri, { useUnifiedTopology: true, useNewUrlPar
     })
 
     bot.onText(/\/start/, async (msg, match) => {
-        await bot.sendMessage(msg.chat.id, 'To add meme send a photo with search tags in lower case separated by semicolons(;) in caption')
-        await bot.sendMessage(msg.chat.id, 'To send a meme type @meme_reply_bot followed by a search tag query in chat and related memes will appear above message box')
-        await bot.sendMessage(msg.chat.id, 'Example: @meme_reply_bot helo')
+        return bot.sendMessage(msg.chat.id,'Type /info to know how to use')
     })
 
     bot.onText(/\/info/, async (msg, match) => {
