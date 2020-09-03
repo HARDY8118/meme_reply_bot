@@ -39,19 +39,26 @@ mongoose.connect(process.env.mongo_uri, { useUnifiedTopology: true, useNewUrlPar
     })
 
     bot.onText(/\/start/, async (msg, match) => {
-        return bot.sendMessage(msg.chat.id,'Type /info to know how to use')
+        return bot.sendMessage(msg.chat.id, 'Type /info to know how to use')
     })
 
     bot.onText(/\/info/, async (msg, match) => {
-        await bot.sendMessage(msg.chat.id, 'To add meme send a photo with search tags in lower case separated by semicolons(;) in caption')
-        await bot.sendMessage(msg.chat.id, 'To send a meme type @meme_reply_bot followed by a search tag query in chat and related memes will appear above message box')
-        await bot.sendMessage(msg.chat.id, 'Example: @meme_reply_bot helo')
+        try {
+            await bot.sendMessage(msg.chat.id, 'To add meme send a photo with search tags in lower case separated by semicolons(;) in caption')
+            await bot.sendMessage(msg.chat.id, 'To send a meme type @meme_reply_bot followed by a search tag query in chat and related memes will appear above message box')
+            await bot.sendMessage(msg.chat.id, 'Example: @meme_reply_bot helo')
+        }
+        catch{
+            bot.sendMessage(msg.chat.id, 'To add meme send a photo with search tags in lower case separated by semicolons(;) in caption')
+            bot.sendMessage(msg.chat.id, 'To send a meme type @meme_reply_bot followed by a search tag query in chat and related memes will appear above message box')
+            bot.sendMessage(msg.chat.id, 'Example: @meme_reply_bot helo')
+        }
     })
-}).catch(e=>{
+}).catch(e => {
     throw e
 })
 
-require('http').createServer((req,res)=>{
-    res.header(200,{'Content-Type': 'text/html'})
+require('http').createServer((req, res) => {
+    res.header(200, { 'Content-Type': 'text/html' })
     res.end('Find @meme_reply_bot at <a href="https://telegram.org/">Telegram</a>')
 })
