@@ -1,4 +1,5 @@
 require('dotenv').config()
+process.env["NTBA_FIX_319"] = 1
 const mongoose = require('mongoose')
 mongoose.connect(process.env.mongo_uri, { useUnifiedTopology: true, useNewUrlParser: true }).then(db => {
     console.log('DB Connected')
@@ -46,6 +47,8 @@ mongoose.connect(process.env.mongo_uri, { useUnifiedTopology: true, useNewUrlPar
         await bot.sendMessage(msg.chat.id, 'To send a meme type @meme_reply_bot followed by a search tag query in chat and related memes will appear above message box')
         await bot.sendMessage(msg.chat.id, 'Example: @meme_reply_bot helo')
     })
+}).catch(e=>{
+    throw e
 })
 
 require('http').createServer((req,res)=>{
