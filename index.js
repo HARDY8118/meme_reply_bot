@@ -47,3 +47,8 @@ mongoose.connect(process.env.mongo_uri, { useUnifiedTopology: true, useNewUrlPar
         await bot.sendMessage(msg.chat.id, 'Example: @meme_reply_bot helo')
     })
 })
+
+require('http').createServer((req,res)=>{
+    res.header(200,{'Content-Type': 'text/html'})
+    res.end('Find @meme_reply_bot at <a href="https://telegram.org/">Telegram</a>')
+})
