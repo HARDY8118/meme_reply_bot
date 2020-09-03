@@ -39,7 +39,12 @@ mongoose.connect(process.env.mongo_uri, { useUnifiedTopology: true, useNewUrlPar
     })
 
     bot.onText(/\/start/, async (msg, match) => {
-        return bot.sendMessage(msg.chat.id, 'Type /info to know how to use')
+        try {
+            await bot.sendMessage(msg.chat.id, 'Type /info to know how to use')
+        }
+        catch (e) {
+            throw e
+        }
     })
 
     bot.onText(/\/info/, async (msg, match) => {
@@ -48,12 +53,11 @@ mongoose.connect(process.env.mongo_uri, { useUnifiedTopology: true, useNewUrlPar
             await bot.sendMessage(msg.chat.id, 'To send a meme type @meme_reply_bot followed by a search tag query in chat and related memes will appear above message box')
             await bot.sendMessage(msg.chat.id, 'Example: @meme_reply_bot helo')
         }
-        catch{
-            bot.sendMessage(msg.chat.id, 'To add meme send a photo with search tags in lower case separated by semicolons(;) in caption')
-            bot.sendMessage(msg.chat.id, 'To send a meme type @meme_reply_bot followed by a search tag query in chat and related memes will appear above message box')
-            bot.sendMessage(msg.chat.id, 'Example: @meme_reply_bot helo')
+        catch (e) {
+            throw e
         }
     })
+    console.log('Bot started')
 }).catch(e => {
     throw e
 })
