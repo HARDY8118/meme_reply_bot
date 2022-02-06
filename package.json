@@ -18,7 +18,7 @@
     "author": "Harshit Vishnoi <harshitvishnoi10@gmail.com>",
     "license": "ISC",
     "dependencies": {
-        "dotenv": "^8.2.0",
+        "dotenv": "^8.6.0",
         "mongoose": "^5.13.9",
         "node-telegram-bot-api": "^0.50.0"
     },
